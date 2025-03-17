@@ -13,7 +13,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>'MKOVERED'</title>
+  <title>'Mkovered'</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -24,6 +24,7 @@
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  
 
 
 </head>
@@ -53,33 +54,62 @@
             <a class="nav-link" href="shop.html">Shop</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="blog.html">Blog</a>
+            <a class="nav-link" href="profile.html">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="blog.html">
+            <a class="nav-link" href="login.html">
               <i class="fas fa-user"></i>
             </a>
           </li>
         </ul>
+        <div class="" id="">
+          <!-- Custom Menu Button -->
+          <div class="custom_menu-btn">
+            <button onclick="openNav()">
+              <i class="fa fa-shopping-cart"></i>
+            </button>
 
-        <!-- Custom Menu Button -->
-        <div class="custom_menu-btn">
-          <button onclick="openNav()">
-            <i class="fa fa-shopping-cart"></i>
-          </button>
-
-          <!-- Overlay content -->
-          <div id="myNav" class="overlay">
-            <div class="overlay-content">
-              <h1>Shopping Cart</h1>
-              <a href="index.html">Home</a>
-              <a href="about.html">About</a>
-              <a href="shop.html">Shop</a>
-              <a href="blog.html">Blog</a>
-            </div>
+            <!-- Overlay content -->
+            <div id="myNav" class="overlay">
+              <div class="overlay-content">
+                <h1>Shopping Cart</h1>
+                <div class="products">
+                  <!-- Product List -->
+                  <div class="product">
+                      <h3>Product 1</h3>
+                      <p>Price: $10.00</p>
+                      <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
+                  </div>
+                  <div class="product">
+                      <h3>Product 2</h3>
+                      <p>Price: $15.00</p>
+                      <button onclick="addToCart('Product 2', 15)">Add to Cart</button>
+                  </div>
+                  <div class="product">
+                      <h3>Product 3</h3>
+                      <p>Price: $20.00</p>
+                      <button onclick="addToCart('Product 3', 20)">Add to Cart</button>
+                  </div>
+                  <div class="product">
+                      <h3>Product 4</h3>
+                      <p>Price: $25.00</p>
+                      
+                  </div>
+              </div>
+              
+              <div class="cart">
+                  <h2>Your Cart</h2>
+                  <div id="cartItems"></div>
+                  <div class="total">
+                      Total: $<span id="totalAmount">0.00</span>
+                  </div>
+              </div>
+              <div>
+                  <button class="checkout-btn" onclick="checkout()">Checkout</button>
+              </div>
           </div>
         </div>
-      </div>
+    </div>
 
     </nav>
   </div>
@@ -134,6 +164,9 @@
                 <h6>
                   Necklace
                 </h6>
+                <button onclick="addToCart('Product 4', 25)">
+                  <i class="bi bi-plus"></i>
+                </button>
                 <h6>
                   Price
                   <span>
@@ -413,66 +446,6 @@
   </section>
 
   <!-- end offer section -->
-
-  <!-- blog section -->
-
-  <section class="blog_section ">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Latest From Blog
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/b1.jpg" alt="">
-              <h4 class="blog_date">
-                14 <br>
-                July
-              </h4>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Molestiae ad reiciendis dignissimos
-              </h5>
-              <p>
-                alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
-              </p>
-              <a href="">
-                Read More
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/b2.jpg" alt="">
-              <h4 class="blog_date">
-                15 <br>
-                July
-              </h4>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Dolores vel maiores voluptatem enim
-              </h5>
-              <p>
-                alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
-              </p>
-              <a href="">
-                Read More
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end blog section -->
 
   <!-- client section -->
 
