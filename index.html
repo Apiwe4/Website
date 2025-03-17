@@ -8,12 +8,12 @@
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
-  <link rel="icon" href="images/favicon.png" type="image/gif" />
+  <link rel="icon" href="images/'mk-logo.png" type="image/gif" />
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>'MKOVERED Changed'</title>
+  <title>'Mkovered'</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -23,48 +23,103 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  
+
 
 </head>
 
 <body>
 
-  <!-- header section strats -->
-  <header class="header_section">
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg custom_nav-container">
-        <a class="navbar-brand" href="index.html">
-          <span>
-            Healet
-          </span>
-        </a>
+  <!-- header section starts -->
+<header class="header_section">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg custom_nav-container">
+      
+      <!-- Navbar Brand (separating the span) -->
+      <a class="navbar-brand" href="index.html">
+        <span>'MKOVERED</span>
+      </a>
+      
+      <!-- Navbar items (ul) -->
+      <div class="navbar-collapse" id="">
+        <ul class="navbar-nav ml-auto"> <!-- Added ml-auto to align the nav items to the right -->
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shop.html">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">
+              <i class="fas fa-user"></i>
+            </a>
+          </li>
+        </ul>
         <div class="" id="">
-
+          <!-- Custom Menu Button -->
           <div class="custom_menu-btn">
             <button onclick="openNav()">
-              <span class="s-1"> </span>
-              <span class="s-2"> </span>
-              <span class="s-3"> </span>
+              <i class="fa fa-shopping-cart"></i>
             </button>
+
+            <!-- Overlay content -->
             <div id="myNav" class="overlay">
               <div class="overlay-content">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="shop.html">Shop</a>
-                <a href="blog.html">Blog</a>
+                <h1>Shopping Cart</h1>
+                <div class="products">
+                  <!-- Product List -->
+                  <div class="product">
+                      <h3>Product 1</h3>
+                      <p>Price: $10.00</p>
+                      <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
+                  </div>
+                  <div class="product">
+                      <h3>Product 2</h3>
+                      <p>Price: $15.00</p>
+                      <button onclick="addToCart('Product 2', 15)">Add to Cart</button>
+                  </div>
+                  <div class="product">
+                      <h3>Product 3</h3>
+                      <p>Price: $20.00</p>
+                      <button onclick="addToCart('Product 3', 20)">Add to Cart</button>
+                  </div>
+                  <div class="product">
+                      <h3>Product 4</h3>
+                      <p>Price: $25.00</p>
+                      
+                  </div>
               </div>
-            </div>
+              
+              <div class="cart">
+                  <h2>Your Cart</h2>
+                  <div id="cartItems"></div>
+                  <div class="total">
+                      Total: $<span id="totalAmount">0.00</span>
+                  </div>
+              </div>
+              <div>
+                  <button class="checkout-btn" onclick="checkout()">Checkout</button>
+              </div>
           </div>
-
         </div>
-      </nav>
     </div>
-  </header>
-  <!-- end header section -->
+
+    </nav>
+  </div>
+</header>
+<!-- end header section -->
 
   <!-- slider section -->
   <section class="slider_section position-relative">
     <div class="slider_bg_box">
-      <img src="images/slider-bg.jpg" alt="">
+      <img src="images/slider-bg.png" alt="">
     </div>
     <div class="slider_bg"></div>
     <div class="container">
@@ -75,11 +130,10 @@
             <br> Collection
           </h1>
           <p>
-            It is a long established fact that a reader will be distracted by the readable content of a page when
-            looking at its layout. The point of using Lorem
+           it
           </p>
           <div></div>
-            <a href="" class="slider-link">
+            <a href="shop.html" class="slider-link">
               Shop Now
             </a>
           </div>
@@ -109,6 +163,9 @@
                 <h6>
                   Necklace
                 </h6>
+                <button onclick="addToCart('Product 4', 25)">
+                  <i class="bi bi-plus"></i>
+                </button>
                 <h6>
                   Price
                   <span>
@@ -301,7 +358,7 @@
         </div>
       </div>
       <div class="btn-box">
-        <a href="">
+        <a href="shop.html">
           View All Products
         </a>
       </div>
@@ -353,7 +410,7 @@
               <h2>
                 Upto 15% Off
               </h2>
-              <a href="">
+              <a href="shop.html">
                 Shop Now
               </a>
             </div>
@@ -366,7 +423,7 @@
               <h2>
                 Upto 10% Off
               </h2>
-              <a href="">
+              <a href="shop.html">
                 Shop Now
               </a>
             </div>
@@ -377,7 +434,7 @@
               <h2>
                 Upto 20% Off
               </h2>
-              <a href="">
+              <a href="shop.html">
                 Shop Now
               </a>
             </div>
@@ -388,66 +445,6 @@
   </section>
 
   <!-- end offer section -->
-
-  <!-- blog section -->
-
-  <section class="blog_section ">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Latest From Blog
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/b1.jpg" alt="">
-              <h4 class="blog_date">
-                14 <br>
-                July
-              </h4>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Molestiae ad reiciendis dignissimos
-              </h5>
-              <p>
-                alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
-              </p>
-              <a href="">
-                Read More
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/b2.jpg" alt="">
-              <h4 class="blog_date">
-                15 <br>
-                July
-              </h4>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Dolores vel maiores voluptatem enim
-              </h5>
-              <p>
-                alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
-              </p>
-              <a href="">
-                Read More
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end blog section -->
 
   <!-- client section -->
 
@@ -640,13 +637,13 @@
             <a href="">
               <i class="fa fa-phone" aria-hidden="true"></i>
               <span>
-                Call +01 1234567890
+                WhatsApp business: 0796096165
               </span>
             </a>
             <a href="">
               <i class="fa fa-envelope"></i>
               <span>
-                demo@gmail.com
+                mkovered5@gmail.com
               </span>
             </a>
           </div>
