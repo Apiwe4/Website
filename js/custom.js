@@ -13,6 +13,158 @@ function openNav() {
     document.querySelector(".custom_menu-btn").classList.toggle("menu_btn-style");
 }
 
+function incrementQuantity(button) {
+    const quantityElement = button.parentElement.querySelector('.quantity');
+    const priceElement = button.closest('.product-item').querySelector('.price');
+    const basePrice = parseFloat(priceElement.getAttribute('data-base-price'));
+    let quantity = parseInt(quantityElement.textContent);
+    quantity += 1;
+    quantityElement.textContent = quantity;
+    updatePrice(priceElement, basePrice, quantity);
+  }
+  
+  function decrementQuantity(button) {
+    const quantityElement = button.parentElement.querySelector('.quantity');
+    const priceElement = button.closest('.product-item').querySelector('.price');
+    const basePrice = parseFloat(priceElement.getAttribute('data-base-price'));
+    let quantity = parseInt(quantityElement.textContent);
+    if (quantity > 1) {
+      quantity -= 1;
+      quantityElement.textContent = quantity;
+      updatePrice(priceElement, basePrice, quantity);
+    }
+  }
+  
+  function updatePrice(priceElement, basePrice, quantity) {
+    const totalPrice = (basePrice * quantity).toFixed(2);
+    priceElement.textContent = totalPrice;
+  }
+  
+  // Initialize base prices on page load
+  document.querySelectorAll('.price').forEach(priceElement => {
+    const basePrice = parseFloat(priceElement.textContent);
+    priceElement.setAttribute('data-base-price', basePrice);
+  });
+
+  // Function to update the product price and summary
+function updateProductPrice(button, change) {
+    const productItem = button.closest('.product-item');
+    const quantityElement = productItem.querySelector('.quantity');
+    const priceElement = productItem.querySelector('.product-price');
+    const basePrice = parseFloat(priceElement.getAttribute('data-base-price')); // Use data attribute for base price
+    let quantity = parseInt(quantityElement.textContent);
+  
+    // Update quantity
+    quantity += change;
+    if (quantity < 1) quantity = 1; // Ensure quantity doesn't go below 1
+    quantityElement.textContent = quantity;
+  
+    // Update product price
+    const totalPrice = (basePrice * quantity).toFixed(2);
+    priceElement.textContent = `$${totalPrice}`;
+  
+    // Update the summary (Subtotal, Item Count, and Balance)
+    updateSummary();
+  }
+  
+  // Function to increment quantity
+  function incrementQuantity(button) {
+    updateProductPrice(button, 1); // Increase quantity by 1
+  }
+  
+  // Function to decrement quantity
+  function decrementQuantity(button) {
+    updateProductPrice(button, -1); // Decrease quantity by 1
+  }
+  
+  // Function to update the summary (Subtotal, Item Count, and Balance)
+  function updateSummary() {
+    const productItems = document.querySelectorAll('.product-item');
+    let subtotal = 0;
+    let totalItems = 0;
+  
+    // Calculate subtotal and total items
+    productItems.forEach(item => {
+      const price = parseFloat(item.querySelector('.product-price').textContent.replace('$', ''));
+      const quantity = parseInt(item.querySelector('.quantity').textContent);
+      subtotal += price;
+      totalItems += quantity;
+    });
+  
+    // Update Subtotal and Item Count
+    const subtotalElement = document.querySelector('.cart-summary li:nth-child(1)');
+    subtotalElement.innerHTML = `Subtotal (${totalItems} ${totalItems === 1 ? 'item' : 'items'}) <span>$${subtotal.toFixed(2)}</span>`;
+  
+    // Update Balance
+    const totalAmountElement = document.getElementById('totalAmount');
+    totalAmountElement.textContent = `$${subtotal.toFixed(2)}`;
+  }
+  
+  // Initialize base prices and summary on page load
+  document.querySelectorAll('.product-price').forEach(priceElement => {
+    const basePrice = parseFloat(priceElement.textContent.replace('$', ''));
+    priceElement.setAttribute('data-base-price', basePrice); // Store base price in data attribute
+  });
+  
+  updateSummary(); // Initialize summary
+
+  // Function to update the cart badge
+function updateCartBadge() {
+    const productItems = document.querySelectorAll('.product-item');
+    let totalItems = 0;
+  
+    // Calculate total items
+    productItems.forEach(item => {
+      const quantity = parseInt(item.querySelector('.quantity').textContent);
+      totalItems += quantity;
+    });
+  
+    // Update the badge
+    const cartBadge = document.getElementById('cart-badge');
+    cartBadge.textContent = totalItems;
+  }
+  
+  // Call updateCartBadge whenever the quantity changes
+  function updateProductPrice(button, change) {
+    const productItem = button.closest('.product-item');
+    const quantityElement = productItem.querySelector('.quantity');
+    const priceElement = productItem.querySelector('.product-price');
+    const basePrice = parseFloat(priceElement.getAttribute('data-base-price')); // Use data attribute for base price
+    let quantity = parseInt(quantityElement.textContent);
+  
+    // Update quantity
+    quantity += change;
+    if (quantity < 1) quantity = 1; // Ensure quantity doesn't go below 1
+    quantityElement.textContent = quantity;
+  
+    // Update product price
+    const totalPrice = (basePrice * quantity).toFixed(2);
+    priceElement.textContent = `$${totalPrice}`;
+  
+    // Update the summary and cart badge
+    updateSummary();
+    updateCartBadge();
+  }
+  
+  // Initialize cart badge on page load
+  updateCartBadge();
+
+  document.getElementById('addressForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent form from submitting the traditional way
+  
+    // Get the address from the textarea
+    const addressNotes = document.getElementById('addressNotes').value;
+  
+    // Save the address (e.g., to localStorage or send to a server)
+    localStorage.setItem('shippingAddress', addressNotes);
+  
+    // Notify the user
+    alert('Address saved successfully!');
+    console.log('Saved Address:', addressNotes);
+  
+    // Optionally, you can redirect or update the UI here
+  });
+
 //cart
 
 let cart = [];
