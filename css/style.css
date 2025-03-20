@@ -167,7 +167,7 @@ button {
   border: none;
   cursor: pointer;
   font-size: 24px; /* Adjust icon size */
-  color: #333; /* Icon color */
+  color: #ffffff; /* Icon color */
 }
 
 .cart-badge {
@@ -184,6 +184,8 @@ button {
 button:hover {
   background-color: #fddc5d;
 }
+
+
 
 .overlay {
   height: 100%;
@@ -257,39 +259,6 @@ button:hover {
   overflow-y: auto; /* Enables scrolling if content overflows */
   height: 500px; /* Fixed height */
 }
-
-.form-group label {
-  display: block;
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.form-group textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
-  resize: vertical; /* Allow vertical resizing */
-}
-
-.save-address-btn {
-  width: 100%;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-.save-address-btn:hover {
-  background-color: #218838;
-}
-
 .products {
   display: flex;
   flex-direction: column;
@@ -374,8 +343,8 @@ button:hover {
 }
 
 .quantity-btn {
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
+  background-color: #000000;
+  border: 1px solid #000000;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -554,6 +523,205 @@ a:focus {
   text-transform: uppercase;
 }
 /*end header section*/
+
+/* user register */
+/* Overlay */
+.loginoverlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top of other content */
+}
+
+/* Login/Signup Container */
+.login-container {
+  width: 300px;
+  min-height: 350px; /* Use min-height instead of fixed height */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  border: 1px solid #fddc5c;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+}
+
+.login-container h2 {
+  color: #fddc5c;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fddc5c;
+}
+
+.close-btn:hover {
+  color: #ffffff;
+}
+
+/* Form Group */
+.form-group {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 13px;
+  background: transparent;
+  border: 1px solid #fddc5c;
+  border-radius: 10px;
+  color: #fddc5c;
+}
+
+.form-group input::placeholder {
+  color: #fddc5c;
+}
+
+.form-group input:focus {
+  outline: none;
+}
+
+/* Options (Remember Me & Forgot Password) */
+.options {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  font-size: 12px;
+  color: #fddc5c;
+}
+
+.options input {
+  margin-top: 0px;
+  margin-right: 5px;
+}
+
+.options a {
+  margin-left: auto;
+  text-decoration: none;
+  color: #fddc5c;
+}
+
+/* Custom checkbox container */
+.custom-checkbox {
+  display: inline-block;
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hide the default checkbox */
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #fddc5c; 
+  border: 2px solid #fddc5c; 
+  border-radius: 4px;
+}
+
+/* Hover effect */
+.custom-checkbox:hover input ~ .checkmark {
+  background-color: #fddc5c;
+}
+
+/* Checked state */
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #fddc5c;
+}
+
+/* Checkmark (tick) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark */
+.custom-checkbox .checkmark:after {
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Login/Signup Button */
+.login-btn {
+  background: #fddc5c;;
+  color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.login-btn:hover {
+  background: transparent;
+  color: #fddc5c;
+  outline: 1px solid #fddc5c;
+}
+
+/* Switch Form Link */
+p {
+  font-size: 12px;
+  color: #fddc5c;
+  margin-top: 15px;
+  text-align: center;
+}
+
+#register {
+  text-decoration: none;
+  color: #fddc5c;
+  font-weight: bold;
+}
+
+#register:hover {
+  text-decoration: underline;
+}
+
+/* user register */
+
 /* slider section */
 .slider_section {
   min-height: 100vh;

@@ -55,11 +55,12 @@
             <a class="nav-link" href="profile.html">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.html">
+            <a class="nav-link" href="#" onclick="openLoginOverlay()"> <!-- Trigger overlay -->
               <i class="fas fa-user"></i>
             </a>
           </li>
         </ul>
+        
         <div class="" id="">
           <!-- Custom Menu Button -->
           <div class="custom_menu-btn">
@@ -136,6 +137,57 @@
       </div>
     </nav>
   </div>
+
+  <!-- Login Overlay -->
+  <div id="loginOverlay" class="loginoverlay">
+    <div class="login-container">
+      <!-- Close Button -->
+      <span class="close-btn" onclick="closeLoginOverlay()">&times;</span>
+
+      <!-- Login Form -->
+      <div id="loginFormContainer">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <input type="text" id="username" name="username" placeholder="Enter your username or email" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+          </div>
+          <div class="options">
+            <label class="custom-checkbox">
+              <input type="checkbox" id="rememberMe">
+              <span class="checkmark"></span> Remember me</label>
+            <a href="#">Forgot password?</a>
+          </div>
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="register" onclick="switchToSignupForm()">Sign up</a></p>
+      </div>
+
+      <!-- Signup Form -->
+      <div id="signupFormContainer" style="display: none;">
+        <h2>Create Account</h2>
+        <form id="signupForm">
+          <div class="form-group">
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="newPassword" name="newPassword" placeholder="Enter your password" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+          </div>
+          <button type="submit" class="login-btn">Create Account</button>
+        </form>
+        <p>Already have an account? <a href="#" id="register" onclick="switchToLoginForm()">Login</a></p>
+      </div>
+    </div>
+  </div>
+
 </header>
 <!-- end header section -->
 
@@ -149,11 +201,11 @@
       <div class="col-md-9 col-lg-8">
         <div class="detail-box">
           <h1>
-            Best Jewellery
-            <br> Collection
+            Crace In Every
+            <br> Stitch
           </h1>
           <p>
-           it
+           
           </p>
           <div></div>
             <a href="shop.html" class="slider-link">

@@ -246,3 +246,63 @@ $(document).on("click", '[data-toggle="lightbox"]', function (event) {
     event.preventDefault();
     $(this).ekkoLightbox();
 });
+
+// Function to open the login overlay
+function openLoginOverlay() {
+  const overlay = document.getElementById('loginOverlay');
+  overlay.style.display = 'flex';
+  switchToLoginForm(); // Show the login form by default
+}
+
+// Function to close the login overlay
+function closeLoginOverlay() {
+  const overlay = document.getElementById('loginOverlay');
+  overlay.style.display = 'none';
+}
+
+// Function to switch to the signup form
+function switchToSignupForm() {
+  document.getElementById('loginFormContainer').style.display = 'none';
+  document.getElementById('signupFormContainer').style.display = 'block';
+}
+
+// Function to switch to the login form
+function switchToLoginForm() {
+  document.getElementById('signupFormContainer').style.display = 'none';
+  document.getElementById('loginFormContainer').style.display = 'block';
+}
+
+// Handle login form submission
+document.getElementById('loginForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  if (!username || !password) {
+    alert('Please fill in all fields.');
+    return;
+  }
+  alert('Login successful!');
+  closeLoginOverlay();
+});
+
+// Handle signup form submission
+document.getElementById('signupForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+  const fullName = document.getElementById('fullName').value;
+  const email = document.getElementById('email').value;
+  const newPassword = document.getElementById('newPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+
+  if (!fullName || !email || !newPassword || !confirmPassword) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  if (newPassword !== confirmPassword) {
+    alert('Passwords do not match.');
+    return;
+  }
+
+  alert('Account created successfully!');
+  closeLoginOverlay();
+});
