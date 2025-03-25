@@ -13,223 +13,132 @@ function openNav() {
     document.querySelector(".custom_menu-btn").classList.toggle("menu_btn-style");
 }
 
-function incrementQuantity(button) {
-    const quantityElement = button.parentElement.querySelector('.quantity');
-    const priceElement = button.closest('.product-item').querySelector('.price');
-    const basePrice = parseFloat(priceElement.getAttribute('data-base-price'));
-    let quantity = parseInt(quantityElement.textContent);
-    quantity += 1;
-    quantityElement.textContent = quantity;
-    updatePrice(priceElement, basePrice, quantity);
-  }
-  
-  function decrementQuantity(button) {
-    const quantityElement = button.parentElement.querySelector('.quantity');
-    const priceElement = button.closest('.product-item').querySelector('.price');
-    const basePrice = parseFloat(priceElement.getAttribute('data-base-price'));
-    let quantity = parseInt(quantityElement.textContent);
-    if (quantity > 1) {
-      quantity -= 1;
-      quantityElement.textContent = quantity;
-      updatePrice(priceElement, basePrice, quantity);
-    }
-  }
-  
-  function updatePrice(priceElement, basePrice, quantity) {
-    const totalPrice = (basePrice * quantity).toFixed(2);
-    priceElement.textContent = totalPrice;
-  }
-  
-  // Initialize base prices on page load
-  document.querySelectorAll('.price').forEach(priceElement => {
-    const basePrice = parseFloat(priceElement.textContent);
-    priceElement.setAttribute('data-base-price', basePrice);
-  });
+let cart = []; // Array to store cart items
 
-  // Function to update the product price and summary
-function updateProductPrice(button, change) {
-    const productItem = button.closest('.product-item');
-    const quantityElement = productItem.querySelector('.quantity');
-    const priceElement = productItem.querySelector('.product-price');
-    const basePrice = parseFloat(priceElement.getAttribute('data-base-price')); // Use data attribute for base price
-    let quantity = parseInt(quantityElement.textContent);
-  
-    // Update quantity
-    quantity += change;
-    if (quantity < 1) quantity = 1; // Ensure quantity doesn't go below 1
-    quantityElement.textContent = quantity;
-  
-    // Update product price
-    const totalPrice = (basePrice * quantity).toFixed(2);
-    priceElement.textContent = `$${totalPrice}`;
-  
-    // Update the summary (Subtotal, Item Count, and Balance)
-    updateSummary();
-  }
-  
-  // Function to increment quantity
-  function incrementQuantity(button) {
-    updateProductPrice(button, 1); // Increase quantity by 1
-  }
-  
-  // Function to decrement quantity
-  function decrementQuantity(button) {
-    updateProductPrice(button, -1); // Decrease quantity by 1
-  }
-  
-  // Function to update the summary (Subtotal, Item Count, and Balance)
-  function updateSummary() {
-    const productItems = document.querySelectorAll('.product-item');
-    let subtotal = 0;
-    let totalItems = 0;
-  
-    // Calculate subtotal and total items
-    productItems.forEach(item => {
-      const price = parseFloat(item.querySelector('.product-price').textContent.replace('$', ''));
-      const quantity = parseInt(item.querySelector('.quantity').textContent);
-      subtotal += price;
-      totalItems += quantity;
-    });
-  
-    // Update Subtotal and Item Count
-    const subtotalElement = document.querySelector('.cart-summary li:nth-child(1)');
-    subtotalElement.innerHTML = `Subtotal (${totalItems} ${totalItems === 1 ? 'item' : 'items'}) <span>$${subtotal.toFixed(2)}</span>`;
-  
-    // Update Balance
-    const totalAmountElement = document.getElementById('totalAmount');
-    totalAmountElement.textContent = `$${subtotal.toFixed(2)}`;
-  }
-  
-  // Initialize base prices and summary on page load
-  document.querySelectorAll('.product-price').forEach(priceElement => {
-    const basePrice = parseFloat(priceElement.textContent.replace('$', ''));
-    priceElement.setAttribute('data-base-price', basePrice); // Store base price in data attribute
-  });
-  
-  updateSummary(); // Initialize summary
-
-  // Function to update the cart badge
-function updateCartBadge() {
-    const productItems = document.querySelectorAll('.product-item');
-    let totalItems = 0;
-  
-    // Calculate total items
-    productItems.forEach(item => {
-      const quantity = parseInt(item.querySelector('.quantity').textContent);
-      totalItems += quantity;
-    });
-  
-    // Update the badge
-    const cartBadge = document.getElementById('cart-badge');
-    cartBadge.textContent = totalItems;
-  }
-  
-  // Call updateCartBadge whenever the quantity changes
-  function updateProductPrice(button, change) {
-    const productItem = button.closest('.product-item');
-    const quantityElement = productItem.querySelector('.quantity');
-    const priceElement = productItem.querySelector('.product-price');
-    const basePrice = parseFloat(priceElement.getAttribute('data-base-price')); // Use data attribute for base price
-    let quantity = parseInt(quantityElement.textContent);
-  
-    // Update quantity
-    quantity += change;
-    if (quantity < 1) quantity = 1; // Ensure quantity doesn't go below 1
-    quantityElement.textContent = quantity;
-  
-    // Update product price
-    const totalPrice = (basePrice * quantity).toFixed(2);
-    priceElement.textContent = `$${totalPrice}`;
-  
-    // Update the summary and cart badge
-    updateSummary();
-    updateCartBadge();
-  }
-  
-  // Initialize cart badge on page load
-  updateCartBadge();
-
-  document.getElementById('addressForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form from submitting the traditional way
-  
-    // Get the address from the textarea
-    const addressNotes = document.getElementById('addressNotes').value;
-  
-    // Save the address (e.g., to localStorage or send to a server)
-    localStorage.setItem('shippingAddress', addressNotes);
-  
-    // Notify the user
-    alert('Address saved successfully!');
-    console.log('Saved Address:', addressNotes);
-  
-    // Optionally, you can redirect or update the UI here
-  });
-
-//cart
-
-let cart = [];
-let totalAmount = 0;
-
+// Function to add an item to the cart
 function addToCart(productName, price) {
-    const product = { name: productName, price: price };
-    cart.push(product);
-    totalAmount += price;
+  // Check if the product already exists in the cart
+  const existingProduct = cart.find(item => item.name === productName);
 
-    updateCart();
+  if (existingProduct) {
+    // If the product exists, increment its quantity
+    existingProduct.quantity += 1;
+  } else {
+    // If the product doesn't exist, add it to the cart
+    cart.push({ name: productName, price: price, quantity: 1 });
+  }
+
+  // Update the cart display, badge, and summary
+  updateCartDisplay();
+  updateCartBadge();
+  updateCartSummary();
 }
 
-function updateCart() {
-    const cartItemsDiv = document.getElementById('cartItems');
-    cartItemsDiv.innerHTML = ''; // Clear previous items
+// Function to update the cart display
+function updateCartDisplay() {
+  const cartItemsContainer = document.getElementById('cart-items');
+  cartItemsContainer.innerHTML = ''; // Clear the current cart items
 
-    cart.forEach((product, index) => {
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-        cartItem.innerHTML = `
-            <h3>${product.name}</h3>
-            <p>Price: $${product.price}</p>
-            <button onclick="removeFromCart(${index})">Remove</button>
-        `;
-        cartItemsDiv.appendChild(cartItem);
-    });
+  cart.forEach(item => {
+    const productItem = document.createElement('div');
+    productItem.classList.add('product-item');
 
-    // Update total amount
-    document.getElementById('totalAmount').textContent = totalAmount.toFixed(2);
+    productItem.innerHTML = `
+      <img src="images/${item.name.toLowerCase().replace(' ', '-')}.png" alt="${item.name}" class="product-image">
+      <div class="product-details">
+        <h2 class="product-name">${item.name}</h2>
+        <p class="product-price">$${(item.price * item.quantity).toFixed(2)}</p>
+        <div class="quantity-controls">
+          <button class="quantity-btn" onclick="decrementQuantity('${item.name}')">-</button>
+          <span class="quantity">${item.quantity}</span>
+          <button class="quantity-btn" onclick="incrementQuantity('${item.name}')">+</button>
+        </div>
+      </div>
+    `;
+
+    cartItemsContainer.appendChild(productItem);
+  });
 }
 
-function removeFromCart(index) {
-    const product = cart[index];
-    cart.splice(index, 1);
-    totalAmount -= product.price;
+// Function to update the cart badge
+function updateCartBadge() {
+  const cartBadge = document.getElementById('cart-badge');
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  cartBadge.textContent = totalItems;
+}
 
-    updateCart();
+// Function to update the cart summary
+function updateCartSummary() {
+  const itemCount = document.getElementById('item-count');
+  const subtotal = document.getElementById('subtotal');
+  const totalAmountElement = document.getElementById('totalAmount');
+
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  const subtotalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  itemCount.textContent = totalItems;
+  subtotal.textContent = `$${subtotalAmount.toFixed(2)}`;
+  totalAmountElement.textContent = `$${(subtotalAmount + 4 - 2).toFixed(2)}`; // Including shipping and discount
+}
+
+// Function to increment quantity
+function incrementQuantity(productName) {
+  const product = cart.find(item => item.name === productName);
+  if (product) {
+    product.quantity += 1;
+    updateCartDisplay();
+    updateCartBadge();
+    updateCartSummary();
+  }
+}
+
+// Function to decrement quantity
+function decrementQuantity(productName) {
+  const product = cart.find(item => item.name === productName);
+  if (product && product.quantity > 1) {
+    product.quantity -= 1;
+    updateCartDisplay();
+    updateCartBadge();
+    updateCartSummary();
+  } else if (product && product.quantity === 1) {
+    // Remove the product if the quantity is 0
+    cart = cart.filter(item => item.name !== productName);
+    updateCartDisplay();
+    updateCartBadge();
+    updateCartSummary();
+  }
 }
 
 function checkout() {
-    if (cart.length > 0) {
-        alert("Proceeding to checkout with total: $" + totalAmount.toFixed(2));
-        let userAddress = prompt("Enter your delivery address:");
-        
-        if (userAddress) { 
-        var phoneNumber = "1234567890"; // Replace with actual WhatsApp number (without '+')
-        var message = "Hello, I need help with my order. My total is $" + totalAmount.toFixed(2);
-        
-        // Construct the WhatsApp URL
-        var url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
-        
-        // Open WhatsApp in a new tab
-        window.open(url, "_blank");
+  if (cart.length > 0) {
+    const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    alert("Proceeding to checkout with total: $" + totalAmount.toFixed(2));
+    let userAddress = prompt("Enter your delivery address:");
 
-        // window.location.href = 'checkout.html'; // Uncomment if you also want to redirect to a checkout page
-       
-     } else {
-            alert("You must enter a delivery address to proceed.");
-        }
+    if (userAddress) {
+      // Use a valid WhatsApp number (with country code but without '+' or '00')
+      const phoneNumber = "0810450184"; 
+      const message = `Hello, I need help with my order. My total is $${totalAmount.toFixed(2)}. Delivery Address: ${userAddress}`;
+
+      // Construct the WhatsApp URL properly
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+      // Try opening in the same tab first
+      window.location.href = url;
+      
+      // Alternatively, try opening in a new tab (might be blocked by popup blockers)
+      // const newWindow = window.open(url, '_blank');
+      // if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+      //   // Fallback if popup is blocked
+      //   window.location.href = url;
+      // }
     } else {
-        alert("Your cart is empty. Please add products before checking out.");
+      alert("You must enter a delivery address to proceed.");
     }
+  } else {
+    alert("Your cart is empty. Please add products before checking out.");
+  }
 }
-
 
 /** google_map js **/
 
@@ -306,3 +215,38 @@ document.getElementById('signupForm').addEventListener('submit', function (event
   alert('Account created successfully!');
   closeLoginOverlay();
 });
+
+// Switch between sidebar icons and tabs
+        const sidebarIcons = document.querySelectorAll(".sidebar .icon");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        sidebarIcons.forEach(icon => {
+            icon.addEventListener("click", () => {
+                // Hide all tab contents
+                tabContents.forEach(content => content.classList.add("hidden"));
+                // Show the selected tab content
+                const targetTab = document.getElementById(icon.dataset.tab);
+                targetTab.classList.remove("hidden");
+            });
+        });
+
+        // Switch between nested tabs
+        const tabButtons = document.querySelectorAll(".tab-button");
+
+        tabButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => btn.classList.remove("active"));
+                // Add active class to the clicked button
+                button.classList.add("active");
+
+                // Hide all nested tab contents
+                const parentTab = button.closest(".tab-content");
+                const nestedTabs = parentTab.querySelectorAll(".profile-card");
+                nestedTabs.forEach(tab => tab.classList.add("hidden"));
+
+                // Show the selected nested tab content
+                const targetTab = document.getElementById(button.dataset.tab);
+                targetTab.classList.remove("hidden");
+            });
+        });

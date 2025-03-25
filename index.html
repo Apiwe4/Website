@@ -34,22 +34,27 @@
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg custom_nav-container">
       
-      <!-- Navbar Brand (separating the span) -->
-      <a class="navbar-brand" href="index.html">
-        <span>'MKOVERED</span>
-      </a>
       
       <!-- Navbar items (ul) -->
       <div class="navbar-collapse" id="">
         <ul class="navbar-nav ml-auto"> <!-- Added ml-auto to align the nav items to the right -->
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
+            <a class="nav-link disabled-link" href="index.html">Home</a>
+        </li>
           <li class="nav-item">
             <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="shop.html">Shop</a>
+          </li>
+
+             <!-- Navbar Brand (separating the span) -->
+      <a class="navbar-brand" href="index.html">
+        <span>'MKOVERED</span>
+      </a>
+
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="profile.html">Profile</a>
@@ -61,80 +66,54 @@
           </li>
         </ul>
         
-        <div class="" id="">
-          <!-- Custom Menu Button -->
-          <div class="custom_menu-btn">
-            <button onclick="openNav()">
-              <i class="fa fa-shopping-cart"></i>
-              <span id="cart-badge" class="cart-badge">0</span> <!-- Badge for item count -->
-            </button>
-
-            <!-- Overlay content -->
-            <div id="myNav" class="overlay">
-                  <div class="overlay-content">
-                    <h1>Shopping Cart</h1>
-                    <div class="product_container">
-                      <div class="products">
-                        <!-- Shipping Notice -->
-                        <div class="shipping-notice">
-                          <p>You're $8 away from <strong>FREE SHIPPING!</strong></p>
-                          <button class="keep-shopping-btn">Keep Shopping</button>
-                        </div>
-                    
-                        <!-- Product List -->
-                        <div class="product-list">
-                          <!-- Product 1 -->
-                          <div class="product-item">
-                            <img src="images/p4.png" alt="6 Blade Starter Kit" class="product-image">
-                            <div class="product-details">
-                              <h2 class="product-name">6 Blade Starter Kit</h2>
-                              <p class="product-price">$<span class="price">29.99</span></p>
-                              <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
-                                <span class="quantity">1</span>
-                                <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <div class="product-item">
-                            <img src="images/p8.png" alt="Electric Shaver" class="product-image">
-                            <div class="product-details">
-                              <h2 class="product-name">Electric Shaver</h2>
-                              <p class="product-price">$<span class="price">49.99</span></p>
-                              <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
-                                <span class="quantity">1</span>
-                                <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-              <div class="cart-container"> 
+        <div class="custom_menu-btn">
+          <button onclick="openNav()">
+            <i class="fa fa-shopping-cart"></i>
+            <span id="cart-badge" class="cart-badge">0</span> <!-- Badge for item count -->
+          </button>
+        
+          <!-- Overlay content -->
+          <div id="myNav" class="overlay">
+            <div class="overlay-content">
+              <h1>Shopping Cart</h1>
+              <div class="product_container">
+                <div class="products">
+                  <!-- Shipping Notice -->
+                  <div class="shipping-notice">
+                    <p>You're R8 away from <strong>FREE SHIPPING!</strong></p>
+                    <button class="keep-shopping-btn">Keep Shopping</button>
+                  </div>
+        
+                  <!-- Product List -->
+                  <div class="product-list" id="cart-items">
+                    <!-- Items will be dynamically added here -->
+                  </div>
+                </div>
+              </div>
+        
+              <div class="cart-container">
                 <div class="cart-summary">
                   <h3>Summary</h3>
                   <ul>
-                    <li>Subtotal (1 items) <span>$10.00</span></li>
-                    <li>Shipping Discount <span>-$2.00</span></li>
-                    <li>Shipping & Handling <span>$4.00</span></li>
-                    <li>Tax (Calculated at checkout) <span>$0.00</span></li>
+                    <li>Subtotal (<span id="item-count">0</span> items) <span id="subtotal">R0.00</span></li>
+                    <li>Shipping Discount <span>-R2.00</span></li>
+                    <li>Shipping & Handling <span>R4.00</span></li>
+                    <li>Tax (Calculated at checkout) <span>R0.00</span></li>
                   </ul>
                 </div>
                 <div class="cart-balance">
                   <table>
                     <tr>
                       <td><b>Balance</b></td>
-                      <td><span id="totalAmount">$0.00</span></td>
+                      <td><span id="totalAmount">R0.00</span></td>
                     </tr>
                   </table>
                   <button class="checkout-btn" onclick="checkout()">Checkout</button>
                 </div>
+              </div>
             </div>
           </div>
-      </div>
+        </div>
     </nav>
   </div>
 
@@ -226,11 +205,9 @@
         <h2>
           Latest Products
         </h2>
-      </div>
-      <div class="row">
+      </div><div class="row">
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="box">
-            <a href="">
               <div class="img-box">
                 <img src="images/p1.png" alt="">
               </div>
@@ -238,13 +215,13 @@
                 <h6>
                   Necklace
                 </h6>
-                <button onclick="addToCart('Product 4', 25)">
-                  <i class="bi bi-plus"></i>
-                </button>
+                <button onclick="addToCart('Necklace', 200)">
+                  <i class="fa fa-plus"></i>
+              </button>
                 <h6>
                   Price
                   <span>
-                    $200
+                    R200
                   </span>
                 </h6>
               </div>
@@ -253,12 +230,10 @@
                   New
                 </span>
               </div>
-            </a>
           </div>
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="box">
-            <a href="">
               <div class="img-box">
                 <img src="images/p2.png" alt="">
               </div>
@@ -266,10 +241,13 @@
                 <h6>
                   Necklace
                 </h6>
+                <button onclick="addToCart('Necklace', 200)">
+                  <i class="fa fa-plus"></i>
+              </button>
                 <h6>
                   Price
                   <span>
-                    $300
+                    R300
                   </span>
                 </h6>
               </div>
@@ -278,7 +256,7 @@
                   New
                 </span>
               </div>
-            </a>
+            
           </div>
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
@@ -291,10 +269,13 @@
                 <h6>
                   Necklace
                 </h6>
+                <button onclick="addToCart('Necklace', 200)">
+                  <i class="fa fa-plus"></i>
+              </button>
                 <h6>
                   Price
                   <span>
-                    $110
+                    R110
                   </span>
                 </h6>
               </div>
@@ -303,7 +284,7 @@
                   New
                 </span>
               </div>
-            </a>
+            
           </div>
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
@@ -316,10 +297,13 @@
                 <h6>
                   Ring
                 </h6>
+                <button onclick="addToCart('Necklace', 200)">
+                  <i class="fa fa-plus"></i>
+              </button>
                 <h6>
                   Price
                   <span>
-                    $45
+                    R45
                   </span>
                 </h6>
               </div>
@@ -341,10 +325,13 @@
                 <h6>
                   Ring
                 </h6>
+                <button onclick="addToCart('Necklace', 200)">
+                  <i class="fa fa-plus"></i>
+              </button>
                 <h6>
                   Price
                   <span>
-                    $95
+                    R95
                   </span>
                 </h6>
               </div>
@@ -358,7 +345,7 @@
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="box">
-            <a href="">
+            
               <div class="img-box">
                 <img src="images/p6.png" alt="">
               </div>
@@ -369,7 +356,7 @@
                 <h6>
                   Price
                   <span>
-                    $70
+                    R70
                   </span>
                 </h6>
               </div>
@@ -383,7 +370,7 @@
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="box">
-            <a href="">
+            
               <div class="img-box">
                 <img src="images/p7.png" alt="">
               </div>
@@ -394,7 +381,7 @@
                 <h6>
                   Price
                   <span>
-                    $400
+                    R400
                   </span>
                 </h6>
               </div>
@@ -408,7 +395,7 @@
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="box">
-            <a href="">
+            
               <div class="img-box">
                 <img src="images/p8.png" alt="">
               </div>
@@ -419,7 +406,7 @@
                 <h6>
                   Price
                   <span>
-                    $450
+                    R450
                   </span>
                 </h6>
               </div>
@@ -500,11 +487,11 @@
       <img src="images/mat1.jpg" alt="" />
       <img src="images/client.jpg" alt="" />
       <img src="images/mat2.jpg" alt="" />
-      <img src="images/client.jpg" alt="" />
+      <img src="images/client2.jpg" alt="" />
       <img src="images/mat3.jpg" alt="" />
-      <img src="images/client.jpg" alt="" />
+      <img src="images/client3.jpg" alt="" />
       <img src="images/mat4.jpg" alt="" />
-      <img src="images/client.jpg" alt="" />
+      <img src="images/client4.jpg" alt="" />
 
     </div>
   </div>

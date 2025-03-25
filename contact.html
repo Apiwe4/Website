@@ -52,10 +52,10 @@
             <a class="nav-link" href="shop.html">Shop</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link disabled-link" href="contact.html">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled-link" href="profile.html">Profile</a>
+            <a class="nav-link" href="profile.html">Profile</a>
         </li>
           <li class="nav-item">
             <a class="nav-link" href="#" onclick="openLoginOverlay()"> <!-- Trigger overlay -->
@@ -140,7 +140,6 @@
       </div>
     </nav>
   </div>
-
   <!-- Login Overlay -->
   <div id="loginOverlay" class="loginoverlay">
     <div class="login-container">
@@ -192,220 +191,37 @@
   </div>
 
 </header>
+
   <!-- end header section -->
 
-  <div class="flex h-screen">
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="icon" data-tab="profile">
-          <i class="fa-solid fa-user"></i>
+ <!-- contact section -->
+<section class="contact_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="detail-box">
+          <div class="heading_container">
+            <h2>
+              Contact Us
+            </h2>
+          </div>
+          <p>
+            Have questions or need assistance? Feel free to reach out to us. We are here to help you!
+          </p>
+          <div class="contact_info">
+            <p><strong>Email:</strong> contact@example.com</p>
+            <p><strong>Phone:</strong> +123 456 7890</p>
+            <p><strong>Address:</strong> 123 Street, City, Country</p>
+          </div>
+          <a href="contact.html">
+            Get in Touch
+          </a>
         </div>
-        <div class="icon" data-tab="orders">
-          <i class="fa-solid fa-cart-shopping"></i> <!-- Equivalent for bi-cart -->
-      </div>
-      <div class="icon" data-tab="payments">
-          <i class="fa-solid fa-credit-card"></i> <!-- Equivalent for bi-credit-card -->
-      </div>
-      <div class="icon" data-tab="lists">
-          <i class="fa-solid fa-list"></i> <!-- Equivalent for bi-list -->
       </div>
     </div>
-    
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Header -->
-        <div class="header">
-            <h2>Welcome, Amanda</h2>
-            <div class="search-container">
-                <input type="text" placeholder="Search">
-                <div class="profile-picture"></div>
-            </div>
-        </div>
-
-        <!-- Profile Tab Content -->
-        <div class="tab-content" id="profile">
-            <div class="profile-header">
-                <div class="tabs">
-                    <button class="tab-button active" data-tab="personal-details">Personal Details</button>
-                    <button class="tab-button" data-tab="security-settings">Security Settings</button>
-                    <button class="tab-button" data-tab="address-book">Address Book</button>
-                </div>
-            </div>
-
-            <!-- Personal Details -->
-            <div class="profile-card" id="personal-details">
-                <div class="profile-header" style="background: none; margin-bottom: 0;">
-                    <img src="https://via.placeholder.com/80" alt="Profile">
-                    <div class="profile-info">
-                        <h3>Alexa Rawles</h3>
-                        <p>alexarawles@gmail.com</p>
-                    </div>
-                </div>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" placeholder="Your First Name">
-                    </div>
-                    <div class="form-group">
-                        <label>Nick Name</label>
-                        <input type="text" placeholder="Your First Name">
-                    </div>
-                    <div class="form-group">
-                        <label>Gender</label>
-                        <select>
-                            <option>Select Gender</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Country</label>
-                        <select>
-                            <option>Select Country</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Language</label>
-                        <select>
-                            <option>Select Language</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Time Zone</label>
-                        <select>
-                            <option>Select Time Zone</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <button class="edit-btn">Edit</button>
-            </div>
-
-            <!-- Security Settings -->
-            <div class="profile-card hidden" id="security-settings">
-                <h3>Security Settings</h3>
-                <div class="form-group">
-                    <label>Change Password</label>
-                    <input type="password" placeholder="New Password">
-                </div>
-                <div class="form-group">
-                    <label>Confirm Password</label>
-                    <input type="password" placeholder="Confirm Password">
-                </div>
-                <button class="edit-btn">Save Changes</button>
-            </div>
-
-            <!-- Address Book -->
-            <div class="profile-card hidden" id="address-book">
-                <h3>Address Book</h3>
-                <div class="form-group">
-                    <label>Address Line 1</label>
-                    <input type="text" placeholder="Enter Address">
-                </div>
-                <div class="form-group">
-                    <label>Address Line 2</label>
-                    <input type="text" placeholder="Enter Address">
-                </div>
-                <div class="form-group">
-                    <label>City</label>
-                    <input type="text" placeholder="Enter City">
-                </div>
-                <div class="form-group">
-                    <label>Zip Code</label>
-                    <input type="text" placeholder="Enter Zip Code">
-                </div>
-                <button class="edit-btn">Save Address</button>
-            </div>
-        </div>
-
-        <!-- Orders Tab Content -->
-        <div class="tab-content hidden" id="orders">
-            <div class="profile-header">
-                <div class="tabs">
-                    <button class="tab-button active" data-tab="orders-tab">Orders</button>
-                    <button class="tab-button" data-tab="invoices-tab">Invoices</button>
-                    <button class="tab-button" data-tab="returns-tab">Returns</button>
-                    <button class="tab-button" data-tab="reviews-tab">Product Reviews</button>
-                </div>
-            </div>
-
-            <!-- Orders -->
-            <div class="profile-card" id="orders-tab">
-                <h3>Orders</h3>
-                <p>No orders found.</p>
-            </div>
-
-            <!-- Invoices -->
-            <div class="profile-card hidden" id="invoices-tab">
-                <h3>Invoices</h3>
-                <p>No invoices found.</p>
-            </div>
-
-            <!-- Returns -->
-            <div class="profile-card hidden" id="returns-tab">
-                <h3>Returns</h3>
-                <p>No returns found.</p>
-            </div>
-
-            <!-- Product Reviews -->
-            <div class="profile-card hidden" id="reviews-tab">
-                <h3>Product Reviews</h3>
-                <p>No reviews found.</p>
-            </div>
-        </div>
-
-        <!-- Payments & Credit Tab Content -->
-        <div class="tab-content hidden" id="payments">
-            <div class="profile-header">
-                <div class="tabs">
-                    <button class="tab-button active" data-tab="credit-tab">Credit & Refunds</button>
-                    <button class="tab-button" data-tab="voucher-tab">Redeem Gift Voucher</button>
-                </div>
-            </div>
-
-            <!-- Credit & Refunds -->
-            <div class="profile-card" id="credit-tab">
-                <h3>Credit & Refunds</h3>
-                <p>Available Credit: R 0</p>
-            </div>
-
-            <!-- Redeem Gift Voucher -->
-            <div class="profile-card hidden" id="voucher-tab">
-                <h3>Redeem Gift Voucher</h3>
-                <div class="form-group">
-                    <label>Voucher Code</label>
-                    <input type="text" placeholder="Enter Voucher Code">
-                </div>
-                <button class="edit-btn">Redeem</button>
-            </div>
-        </div>
-
-        <!-- My Lists Tab Content -->
-        <div class="tab-content hidden" id="lists">
-            <div class="profile-header">
-                <div class="tabs">
-                    <button class="tab-button active" data-tab="my-lists-tab">My Lists</button>
-                    <button class="tab-button" data-tab="create-list-tab">Create a List</button>
-                </div>
-            </div>
-
-            <!-- My Lists -->
-            <div class="profile-card" id="my-lists-tab">
-                <h3>My Lists</h3>
-                <p>No lists found.</p>
-            </div>
-
-            <!-- Create a List -->
-            <div class="profile-card hidden" id="create-list-tab">
-                <h3>Create a List</h3>
-                <div class="form-group">
-                    <label>List Name</label>
-                    <input type="text" placeholder="Enter List Name">
-                </div>
-                <button class="edit-btn">Create</button>
-            </div>
-        </div>
-    </div>
-</div>
+  </div>
+</section>
+<!-- end contact section -->
 
 <!-- ad section -->  
 <section class="ad">

@@ -8,12 +8,12 @@
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
-  <link rel="icon" href="images/favicon.png" type="image/gif" />
+  <link rel="icon" href="images/'mk-logo.png" type="image/gif" />
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Healet</title>
+  <title>'Mkovered'</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -24,47 +24,177 @@
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-
+  
 </head>
 
 <body>
 
-  <!-- header section strats -->
-  <header class="header_section innerpage_header">
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg custom_nav-container">
-        <a class="navbar-brand" href="index.html">
-          <span>
-            Healet
-          </span>
-        </a>
+  <!-- header section starts -->
+<header class="header_section">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg custom_nav-container">
+      
+      <!-- Navbar Brand (separating the span) -->
+      <a class="navbar-brand" href="index.html">
+        <span>'MKOVERED</span>
+      </a>
+      
+      <!-- Navbar items (ul) -->
+      <div class="navbar-collapse" id="">
+        <ul class="navbar-nav ml-auto"> <!-- Added ml-auto to align the nav items to the right -->
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shop.html">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">Profile</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="openLoginOverlay()"> <!-- Trigger overlay -->
+              <i class="fas fa-user"></i>
+            </a>
+          </li>
+        </ul>
+        
         <div class="" id="">
-
+          <!-- Custom Menu Button -->
           <div class="custom_menu-btn">
             <button onclick="openNav()">
-              <span class="s-1"> </span>
-              <span class="s-2"> </span>
-              <span class="s-3"> </span>
+              <i class="fa fa-shopping-cart"></i>
+              <span id="cart-badge" class="cart-badge">0</span> <!-- Badge for item count -->
             </button>
+
+            <!-- Overlay content -->
             <div id="myNav" class="overlay">
-              <div class="overlay-content">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="shop.html">Shop</a>
-                <a href="blog.html">Blog</a>
-              </div>
+                  <div class="overlay-content">
+                    <h1>Shopping Cart</h1>
+                    <div class="product_container">
+                      <div class="products">
+                        <!-- Shipping Notice -->
+                        <div class="shipping-notice">
+                          <p>You're R8 away from <strong>FREE SHIPPING!</strong></p>
+                          <button class="keep-shopping-btn">Keep Shopping</button>
+                        </div>
+                    
+                        <!-- Product List -->
+                        <div class="product-list">
+                          <!-- Product 1 -->
+                          <div class="product-item">
+                            <img src="images/p4.png" alt="6 Blade Starter Kit" class="product-image">
+                            <div class="product-details">
+                              <h2 class="product-name">6 Blade Starter Kit</h2>
+                              <p class="product-price">R<span class="price">29.99</span></p>
+                              <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
+                                <span class="quantity">1</span>
+                                <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="product-item">
+                            <img src="images/p8.png" alt="Electric Shaver" class="product-image">
+                            <div class="product-details">
+                              <h2 class="product-name">Electric Shaver</h2>
+                              <p class="product-price">R<span class="price">49.99</span></p>
+                              <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
+                                <span class="quantity">1</span>
+                                <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+              <div class="cart-container"> 
+                <div class="cart-summary">
+                  <h3>Summary</h3>
+                  <ul>
+                    <li>Subtotal (1 items) <span>R10.00</span></li>
+                    <li>Shipping Discount <span>-R2.00</span></li>
+                    <li>Shipping & Handling <span>R4.00</span></li>
+                    <li>Tax (Calculated at checkout) <span>R0.00</span></li>
+                  </ul>
+                </div>
+                <div class="cart-balance">
+                  <table>
+                    <tr>
+                      <td><b>Balance</b></td>
+                      <td><span id="totalAmount">R0.00</span></td>
+                    </tr>
+                  </table>
+                  <button class="checkout-btn" onclick="checkout()">Checkout</button>
+                </div>
             </div>
           </div>
+      </div>
+    </nav>
+  </div>
+ 
+   <!-- Login Overlay -->
+   <div id="loginOverlay" class="loginoverlay">
+    <div class="login-container">
+      <!-- Close Button -->
+      <span class="close-btn" onclick="closeLoginOverlay()">&times;</span>
 
-        </div>
-      </nav>
+      <!-- Login Form -->
+      <div id="loginFormContainer">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <input type="text" id="username" name="username" placeholder="Enter your username or email" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+          </div>
+          <div class="options">
+            <label class="custom-checkbox">
+              <input type="checkbox" id="rememberMe">
+              <span class="checkmark"></span> Remember me</label>
+            <a href="#">Forgot password?</a>
+          </div>
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="register" onclick="switchToSignupForm()">Sign up</a></p>
+      </div>
+
+      <!-- Signup Form -->
+      <div id="signupFormContainer" style="display: none;">
+        <h2>Create Account</h2>
+        <form id="signupForm">
+          <div class="form-group">
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="newPassword" name="newPassword" placeholder="Enter your password" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+          </div>
+          <button type="submit" class="login-btn">Create Account</button>
+        </form>
+        <p>Already have an account? <a href="#" id="register" onclick="switchToLoginForm()">Login</a></p>
+      </div>
     </div>
-  </header>
+  </div>
+
+</header>
   <!-- end header section -->
 
   <!-- about section -->
-
   <section class="about_section  layout_padding">
     <div class="container">
       <div class="row">
@@ -79,12 +209,66 @@
               <h2>
                 About Us
               </h2>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti dolorem eum consequuntur ipsam repellat dolor soluta aliquid laborum, eius odit consectetur vel quasi in quidem, eveniet ab est corporis tempore.
-            </p>
+          </div>
+          <p>
+            At MKovered, our mission is to empower women to express their elegance and style while embracing modest fashion. We are dedicated to providing high-quality, custom-made clothing that caters to the unique needs and measurements of each individual. Through our commitment to excellence and attention to detail, we aim to make every woman feel beautiful, confident, and stylishly modest.
+          </p>
+          <p>
+            Our vision is to become the leading modest fashion brand in South Africa and globally recognized for our timeless, high-end, handmade garments. We envision a fashion industry where modesty is celebrated, and quality is paramount. By promoting a culture of elegance, sophistication, and inclusivity, we strive to make modest fashion accessible and desirable to women of all backgrounds, inspiring a movement that redefines the fashion landscape.
+          </p>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- end about section -->
+
+<!-- ad section -->  
+<section class="ad">
+  <div class="heading_container heading_center">
+    <h2>Instagram</h2>
+  </div>
+  <div class="container">
+    <div class="image-container">
+      <img src="images/mat1.jpg" alt="" />
+      <img src="images/client.jpg" alt="" />
+      <img src="images/mat2.jpg" alt="" />
+      <img src="images/client.jpg" alt="" />
+      <img src="images/mat3.jpg" alt="" />
+      <img src="images/client.jpg" alt="" />
+      <img src="images/mat4.jpg" alt="" />
+      <img src="images/client.jpg" alt="" />
+
+    </div>
+  </div>
+</section>
+<!-- end ad section -->
+
+  <!-- info section -->
+  <section class="info_section layout_padding2">
+    <div class="container">
+      <div class="row info_form_social_row">
+      
+        <div class="col-md-4 col-lg-3">
+
+          <div class="social_box">
             <a href="">
-              Read More
+              <i class="fab fa-facebook" aria-hidden="true"></i> 
+              <span>Like us on Facebook</span>
+            </a>
+            <a href="">
+              <i class="fab fa-instagram" aria-hidden="true"></i> 
+              <span>Follow us on Instagram</span>
+            </a>
+            <a href="">
+              <i class="fab fa-tiktok" aria-hidden="true"></i> 
+              <span>Follow us on TikTok</span>
+            </a>
+            <a href="">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i> 
+              <span>Message us on WhatsApp</span>
             </a>
           </div>
         </div>
@@ -92,41 +276,18 @@
     </div>
   </section>
 
-  <!-- end about section -->
+  <!-- end info_section -->
 
- <!-- info section -->
- <section class="info_section layout_padding2">
-  <div class="container">
-    <div class="row info_form_social_row">
-    
-      <div class="col-md-4 col-lg-3">
-
-        <div class="social_box">
-          <a href="">
-            <i class="fab fa-facebook" aria-hidden="true"></i>
-          </a>
-          <a href="">
-            <i class="fab fa-instagram" aria-hidden="true"></i>
-          </a>
-          <a href="">
-            <i class="fab fa-tiktok" aria-hidden="true"></i>
-          </a>
-          <a href="">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
- <!-- end info section -->
 
   <!-- footer section -->
   <footer class="footer_section">
     <div class="container">
-      <p>
+      <h1>'MKOVERED</h1>
+      
+      <p>        
         &copy; <span id="displayYear"></span> All Rights Reserved By
         <a href="https://html.design/">Free Html Templates</a>
+        <h2>CRACEFULLY WRAPPED BY SUCCESS </h2>
       </p>
     </div>
   </footer>
